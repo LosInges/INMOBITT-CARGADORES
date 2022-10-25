@@ -1,5 +1,4 @@
 import { ModalController } from '@ionic/angular';
-import { AltaComponent } from './alta/alta.component';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionService } from '../services/session.service';
@@ -27,33 +26,21 @@ export class FletesPage implements OnInit {
   ngOnInit() {
     this.sessionService.get('empresa')?.then((empresa) => {
       this.fletesService.getFletesE(empresa).subscribe((fletes) => {
-        this.sessionService.get('tipo')?.then((tipo) => {
-          if (tipo === 'cargador')
-            this.sessionService.get('rfc')?.then((rfc) => {
-              fletes.forEach((flete) =>
-                this.transporteFleteService
-                  .getTransportesFlete(flete.id)
-                  .subscribe((transporteFlete) => {
-                    console.log(transporteFlete);
-                    if (transporteFlete.cargadores != null) {
-                      if (transporteFlete.cargadores.indexOf(rfc) >= 0)
-                        this.fletes.push(flete);
-                    }
-                  })
-              );
-            });
-          else this.fletes = fletes;
+        this.sessionService.get('rfc')?.then((rfc) => {
+          fletes.forEach((flete) =>
+            this.transporteFleteService
+              .getTransportesFlete(flete.id)
+              .subscribe((transporteFlete) => {
+                console.log(transporteFlete);
+                if (transporteFlete.cargadores != null) {
+                  if (transporteFlete.cargadores.indexOf(rfc) >= 0)
+                    this.fletes.push(flete);
+                }
+              })
+          );
         });
       });
     });
-  }
-
-  async abrirRegistro() {
-    const modal = await this.modalController.create({
-      component: AltaComponent,
-    });
-
-    return await modal.present();
   }
 
   eliminar(flete: Flete) {

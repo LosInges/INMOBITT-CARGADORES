@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-
 const routes: Routes = [
   {
     path: '',
@@ -16,13 +15,6 @@ const routes: Routes = [
     path: 'fletes',
     loadChildren: () =>
       import('./fletes/fletes.module').then((m) => m.FletesPageModule),
-  },
-  {
-    path: 'transportes',
-    loadChildren: () =>
-      import('./transportes/transportes.module').then(
-        (m) => m.TransportesPageModule
-      ),
   },
   {
     path: 'cargadores',

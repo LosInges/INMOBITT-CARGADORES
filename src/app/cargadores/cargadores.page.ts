@@ -1,5 +1,4 @@
 import { ModalController } from '@ionic/angular';
-import { AltaComponent } from './alta/alta.component';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Cargador } from '../fletes/interfaces/cargador';
@@ -46,18 +45,6 @@ export class CargadoresPage implements OnInit, OnDestroy {
     if (this.eventosRouter) {
       this.eventosRouter.unsubscribe();
     }
-  }
-
-  async abrirRegistro() {
-    const modal = await this.modalController.create({
-      component: AltaComponent,
-      componentProps: { empresa: this.empresa }
-    });
-    modal.onDidDismiss().then(val => {
-      if (val.data) this.cargadores.push(val.data)
-      else console.log(val)
-    })
-    return await modal.present();
   }
 
   async detalleCargador(rfc: string) {
