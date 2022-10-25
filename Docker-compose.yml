@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "8100:8100"
+      - "8200:8200"
+      - "35729:35729"
+      - "53703:53703"
+    networks:
+      - app
+  api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-api
+    ports:
+      - "3001:3001"
+    networks:
+      - app
+  db:
+    image: mysql:8.0.30
+    environment:
+      MYSQL_ROOT_PASSWORD: 'mysql'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - app
+networks:
+  app:
+volumes:
+  mysql-data:
+    external: true

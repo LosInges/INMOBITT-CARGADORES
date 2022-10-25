@@ -1,0 +1,157 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="fletes">
+        <ion-icon name="close-circle" color="secondary"></ion-icon>
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title color="secondary">PRECARGAS</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="abrirRegistro()">Solicitar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-toolbar>
+        <ion-card-title color="secondary"> VISTA GENERAL </ion-card-title>
+      </ion-toolbar>
+    </ion-card-header>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size-xs="0.1"> </ion-col>
+
+        <ion-col size="4">
+          <ion-card-title
+            class="ion-margin-top"
+            type="submit"
+            color="secondary"
+          >
+            Buscar
+          </ion-card-title>
+          <ion-searchbar animated="true" placeholder="Buscar"></ion-searchbar>
+        </ion-col>
+
+        <ion-col size="2.5">
+          <ion-card-title
+            class="ion-margin-top ion-margin-bottom"
+            type="submit"
+            color="secondary"
+          >
+            Fecha
+          </ion-card-title>
+          <ion-datetime-button datetime="datetime"></ion-datetime-button>
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime id="datetime"></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-col>
+
+        <ion-col size="3">
+          <ion-card-title
+            class="ion-margin-top"
+            type="submit"
+            color="secondary"
+          >
+            Estado Origen
+          </ion-card-title>
+          <ion-list>
+            <ion-item>
+              <ion-select placeholder="Seleccionar estado">
+                <ion-select-option value=""
+                  >Seleccione un estado</ion-select-option
+                >
+                <ion-select-option
+                  *ngFor="let estado of estados"
+                  [value]="estado.nombre"
+                  >{{ estado.nombre }}</ion-select-option
+                >
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+
+        <ion-col>
+          <ion-card-title
+            class="ion-margin-top"
+            type="submit"
+            color="secondary"
+          >
+          </ion-card-title>
+          <ion-button class="ion-margin-top ion-margin-bottom" type="submit">
+            CONFIRMAR
+          </ion-button>
+        </ion-col>
+
+        <ion-col size-xs="0.1"> </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-content>
+    <ion-card *ngFor="let precarga of precargas">
+      <ion-item-sliding>
+        <ion-item>
+          <ion-grid>
+            <ion-row>
+              <ion-col size-xs="0.1"> </ion-col>
+
+              <ion-col size-xs="2">
+                <ion-card-title
+                  class="ion-margin-top ion-margin-bottom"
+                  type="submit"
+                  color="secondary"
+                >
+                  {{ precarga.id }}
+                </ion-card-title>
+              </ion-col>
+
+              <ion-col>
+                <ion-card-title
+                  class="ion-margin-top ion-margin-bottom"
+                  type="submit"
+                  color="secondary"
+                >
+                  {{ precarga.cliente }}
+                </ion-card-title>
+              </ion-col>
+
+              <ion-col>
+                <ion-card-title
+                  class="ion-margin-top ion-margin-bottom"
+                  type="submit"
+                  color="secondary"
+                >
+                  {{ precarga.origen.estado }}
+                </ion-card-title>
+              </ion-col>
+
+              <ion-col>
+                <ion-card-title
+                  class="ion-margin-top ion-margin-bottom"
+                  type="submit"
+                  color="secondary"
+                >
+                  {{ precarga.fecha }}
+                </ion-card-title>
+              </ion-col>
+            </ion-row>
+            <ion-item-options side="end" (ionSwipe)="eliminar(precarga)">
+              <ion-item-option expandable color="danger">
+                <ion-icon name="trash-outline"> </ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+            <ion-item-options side="start" (ionSwipe)="abrirDetalle(precarga)">
+              <ion-item-option expandable color="success">
+                <ion-icon name="trash-outline"> </ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-grid>
+        </ion-item>
+      </ion-item-sliding>
+    </ion-card>
+  </ion-content>
+</ion-content>

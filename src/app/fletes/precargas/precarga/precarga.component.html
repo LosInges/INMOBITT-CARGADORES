@@ -1,0 +1,159 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cerrar()">
+        <ion-icon name="close-circle" color="secondary"></ion-icon>
+       </ion-button>
+    </ion-buttons>
+    <ion-title color="secondary">PRECARGA</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title color="secondary"> LOCALIZACIÓN </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col class="ion-margin-top ion-margin-bottom">
+            <ion-item>
+              <ion-label position="floating"> ID </ion-label>
+              <ion-input [(ngModel)]="precarga.id"  >
+              </ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col class="ion-margin-top ion-margin-bottom">
+            <ion-item>
+              <ion-label position="floating"> EMPRESA </ion-label>
+              <ion-select [(ngModel)]="precarga.empresa"  >
+                <ion-select-option value=""
+                  >Seleccione una empresa</ion-select-option
+                >
+                <ion-select-option
+                  *ngFor="let empresa of empresas"
+                  [value]="empresa.correo"
+                >
+                  {{ empresa.nombre }}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col class="ion-margin-top ion-margin-bottom">
+            <ion-item>
+              <ion-label position="floating"> CLIENTE </ion-label>
+              <ion-input
+                [(ngModel)]="precarga.cliente"
+
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col class="ion-margin-top ion-margin-bottom">
+            <ion-item>
+              <ion-label position="floating"> TELEFONO </ion-label>
+              <ion-input [(ngModel)]="precarga.telefono"  >
+              </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title color="secondary"> DETALLES </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col class="ion-margin-top ion-margin-bottom">
+            <ion-item>
+              <ion-label position="floating"> CAJAS CHICAS </ion-label>
+              <ion-input
+                type="number"
+                [(ngModel)]="precarga.cajas_chicas"
+
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col class="ion-margin-top ion-margin-bottom">
+            <ion-item>
+              <ion-label position="floating"> CAJAS MEDIANAS </ion-label>
+              <ion-input
+                type="number"
+                [(ngModel)]="precarga.cajas_medianas"
+
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col class="ion-margin-top ion-margin-bottom">
+            <ion-item>
+              <ion-label position="floating"> CAJAS GRANDES </ion-label>
+              <ion-input
+                type="number"
+                [(ngModel)]="precarga.cajas_grandes"
+
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col class="ion-margin-top ion-margin-bottom">
+            <ion-item>
+              <ion-label position="floating"> MUEBLES </ion-label>
+              <ion-input
+                type="number"
+                [(ngModel)]="precarga.muebles"
+
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title color="secondary"> DETALLES </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col class="ion-margin-top ion-margin-bottom">
+            <ion-item>
+              <ion-label position="floating"> ORIGEN </ion-label>
+              <ion-input  > </ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-col class="ion-margin-top ion-margin-bottom">
+            <ion-item>
+              <ion-label position="floating"> DESTINO </ion-label>
+              <ion-input  > </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col class="ion-margin-top ion-margin-bottom">
+            <ion-item>
+              <ion-label>Fecha y Hora</ion-label>
+              <ion-datetime [(ngModel)]="fecha"  >
+                <span slot="time-label">Hora</span>
+              </ion-datetime>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-button
+        class="ion-float-right ion-margin-top"
+        fill="solid"
+        (click)="registrarPrecarga()"
+      >
+        SOLICITAR
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

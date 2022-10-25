@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cerrar()">
+        <ion-icon name="close-circle" color="secondary"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title color="secondary">CARGADORES</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title color="secondary"> ALTA </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title color="secondary"> LOCALIZACIÓN </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col class="ion-margin-top ion-margin-bottom">
+                <ion-item>
+                  <ion-label position="floating"> RFC </ion-label>
+                  <ion-input type="text" [(ngModel)]="cargador.rfc">
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col class="ion-margin-top ion-margin-bottom">
+                <ion-item>
+                  <ion-label position="floating"> CONTRASEÑA </ion-label>
+                  <ion-input
+                    type="password"
+                    [(ngModel)]="cargador.password"
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col class="ion-margin-top ion-margin-bottom">
+                <ion-item>
+                  <ion-img [src]=""></ion-img>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title color="secondary"> DETALLES </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col class="ion-margin-top ion-margin-bottom">
+                <ion-item>
+                  <ion-label position="floating"> NOMBRE </ion-label>
+                  <ion-input [(ngModel)]="cargador.nombre"> </ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col class="ion-margin-top ion-margin-bottom">
+                <ion-item>
+                  <ion-label position="floating"> APELLIDO PATERNO </ion-label>
+                  <ion-input [(ngModel)]="apellido1"> </ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col class="ion-margin-top ion-margin-bottom">
+                <ion-item>
+                  <ion-label position="floating"> APELLIDO MATERNO </ion-label>
+                  <ion-input [(ngModel)]="apellido2"> </ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col class="ion-margin-top ion-margin-bottom" size-md="4">
+                <ion-item>
+                  <ion-label position="floating"> TELEFONO </ion-label>
+                  <ion-input [(ngModel)]="cargador.telefono"> </ion-input>
+                </ion-item>
+              </ion-col>
+
+              <ion-col class="ion-margin-top ion-margin-bottom" size-md="4">
+                <ion-item>
+                  <ion-label position="floating"> EMPRESA </ion-label>
+                  <ion-input type="text" disabled [value]="cargador.empresa">
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+
+        <ion-card-content>
+          <ion-button
+            class="ion-float-right ion-margin-top"
+            fill="solid" 
+            color="success"
+            (click)="actualizarCargador()"
+          >
+            GUARDAR
+          </ion-button>
+
+        </ion-card-content>
+      </ion-card>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

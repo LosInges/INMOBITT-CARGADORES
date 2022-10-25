@@ -1,0 +1,14 @@
+<ion-content class="background-image ion-padding">
+  <ion-item>
+    <ion-img [src]="'../../assets/img/LogoIC.png'" width="32"></ion-img>
+  </ion-item>
+  <ion-button fill="solid" color="dark" (click)="abrirRegistro()">
+    registrar empresa
+  </ion-button>
+  <ion-button fill="solid" color="dark" [routerLink]="['/', 'login']">
+    registrar cliente
+  </ion-button>
+<ion-button fill="solid" color="light"  (click)="abrirIngresar()">
+  ingresar
+</ion-button>
+</ion-content>
