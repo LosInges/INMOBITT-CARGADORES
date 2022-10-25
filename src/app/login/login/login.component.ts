@@ -21,30 +21,20 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {}
-
-  onSubmit() {
-    alert(this.email + ', ' + this.password);
-  }
-
+  
   login() {
     this.loginService.login(this.email, this.password).subscribe(
       (res) => {
-        console.log(res)
-
+        if (res.session.tipo !== 'cargador' ) {
+          return
+        }
         const promesas: Promise<any>[] = [
           this.sessionService.set('tipo', res.session.tipo),
         ];
-        if (res.session.tipo === 'cargador' ) {
-          promesas.push(this.sessionService.set('empresa', res.session.empresa));
-          promesas.push(this.sessionService.set('rfc', res.session.email));
-        }
-        else{
-          promesas.push(this.sessionService.set('empresa', res.session.email));
-        }
+        promesas.push(this.sessionService.set('empresa', res.session.empresa));
+        promesas.push(this.sessionService.set('rfc', res.session.email));
         Promise.all(promesas).then((val) => {
-          this.sessionService.keys()?.then(v=>{
-            console.log(v)
-          })
+          console.log(val)
         });
       },
       (err) => console.log(err)

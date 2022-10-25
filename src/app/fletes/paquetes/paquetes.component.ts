@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
 import { ModalController } from '@ionic/angular';
-import { Paquete } from '../interfaces/paquete';
 import { TransporteFlete } from '../interfaces/transporte-flete';
 import { TransporteFleteService } from '../services/transporte-flete.service';
 import { InfoPaquetesComponent } from './info-paquetes/info-paquetes.component';
