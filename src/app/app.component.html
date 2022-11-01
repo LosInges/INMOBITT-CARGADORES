@@ -16,7 +16,7 @@
               (click)="click(p.click)"
               lines="none"
               detail="false"
-              [routerLinkActive]="p.url== ''? '' : 'selected'"
+              [routerLinkActive]="p.url=== ''? '' : 'selected'"
             >
               <ion-icon slot="start" [ios]="p.icon" [md]="p.icon"></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
