@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
         promesas.push(this.sessionService.set('rfc', res.session.email));
         Promise.all(promesas).then((val) => {
           console.log(val)
+          this.router.navigate(['/', 'cargadores'])
         });
       },
       (err) => console.log(err)

@@ -53,6 +53,7 @@ export class CargadoresPage implements OnInit, OnDestroy {
       componentProps: {
         cargador: this.cargadores.filter((cargador) => cargador.rfc === rfc)[0],
       },
+      cssClass: 'modalGeneral'
     });
     modal.onDidDismiss().then(val => {
       if (val.data.actualizado)
