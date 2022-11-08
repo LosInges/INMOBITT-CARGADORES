@@ -46,7 +46,8 @@ export class DetallePaqueteComponent implements OnInit {
   async agregarItem() {
     const modal = await this.modalController.create({
       component: PaqueteComponent,
-      componentProps: { id: this.id, total: this.total }
+      componentProps: { id: this.id, total: this.total },
+      cssClass: 'modalGeneral'
     })
     modal.onDidDismiss().then((item) => {
       if (!item.data) return

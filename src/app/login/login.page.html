@@ -1,8 +1,11 @@
-<ion-content class="background-image ion-padding">
-  <ion-item>
-    <ion-img [src]="'../../assets/img/LogoIC.png'" width="32"></ion-img>
-  </ion-item>
-<ion-button fill="solid" color="light" expand="full" (click)="abrirIngresar()">
-  ingresar
-</ion-button>
+<ion-content class="background-image">
+  <ion-img class="logo" [src]="'../../assets/img/LogoIC.png'"></ion-img>
+  <ion-img class="logoT" [src]="'../../assets/LogoText.png'"></ion-img>
+
+  <div class="centrado">
+    <ion-button fill="solid" color="light" expand="full" (click)="abrirIngresar()">
+      ingresar
+    </ion-button>
+  </div>
+
 </ion-content>

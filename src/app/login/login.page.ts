@@ -15,7 +15,8 @@ export class LoginPage implements OnInit {
 
   async abrirIngresar(){
     const modal = await this.modalController.create({
-      component: LoginComponent
+      component: LoginComponent,
+      cssClass: 'modalIngresar'
     });
     return await modal.present();
   }
