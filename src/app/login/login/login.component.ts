@@ -21,12 +21,12 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {}
-  
+
   login() {
     this.loginService.login(this.email, this.password).subscribe(
       (res) => {
-        if (res.session.tipo !== 'cargador' ) {
-          return
+        if (res.session.tipo !== 'cargador') {
+          return;
         }
         const promesas: Promise<any>[] = [
           this.sessionService.set('tipo', res.session.tipo),
@@ -34,14 +34,15 @@ export class LoginComponent implements OnInit {
         promesas.push(this.sessionService.set('empresa', res.session.empresa));
         promesas.push(this.sessionService.set('rfc', res.session.email));
         Promise.all(promesas).then((val) => {
-          console.log(val)
-          this.router.navigate(['/', 'cargadores'])
+          console.log(val);
+          this.router.navigate(['/', 'cargadores']);
+          this.modalController.dismiss();
         });
       },
       (err) => console.log(err)
     );
   }
-  cerrar(){
+  cerrar() {
     this.modalController.dismiss();
   }
 }
