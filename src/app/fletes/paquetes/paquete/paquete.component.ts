@@ -37,11 +37,12 @@ export class PaqueteComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if (this.agregando && !this.editando) {
+    if (this.agregando) {
       this.item.id = this.id;
       this.item.id_item = uuidv4();
+    } else {
+      this.foto = `img/${this.item.foto.split('/').pop()}`;
     }
-    this.foto = `img/${this.item.foto.split('/').pop()}`;
   }
 
   cerrar() {
@@ -61,7 +62,6 @@ export class PaqueteComponent implements OnInit {
       // this.fotoService.subirMiniatura(photo.webPath).subscribe((data) => {
       //   console.log(data);
       // });
-      console.log(photo);
       const reader = new FileReader();
       const datos = new FormData();
       reader.onload = () => {
@@ -71,7 +71,7 @@ export class PaqueteComponent implements OnInit {
         datos.append('img', imgBlob, `imagen.${photo.format}`);
         this.fotoService.subirImgMiniatura(datos).subscribe((res) => {
           this.item.foto = res.miniatura;
-          console.log(res, this.item);
+          this.foto = `img/${res.miniatura.split('/').pop()}`;
         });
       };
       fetch(photo.webPath).then((v) =>

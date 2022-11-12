@@ -1,8 +1,8 @@
 <!--
-  Lista de items en el paquete con un boton de agrear item e implemetar el formulario que esta 
+  Lista de items en el paquete con un boton de agrear item e implemetar el formulario que esta
   en el paquete.component.html
 
-  Generar un componente nuevo para guardar los archivos de paquete y usarlo de formulario de 
+  Generar un componente nuevo para guardar los archivos de paquete y usarlo de formulario de
   registro cuando se registre un item se debe cerrar el modal retornando el item agregado,
   junto con esta operacion se tiene que guardar el item en la tabla de paquetes utilizando el
   servicio de items.
@@ -24,24 +24,20 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="fletes">
-
-      </ion-back-button>
+      <ion-back-button defaultHref="fletes"> </ion-back-button>
     </ion-buttons>
-    <ion-title color="secondary">PAQUETES</ion-title>
+    <ion-title color="secondary">TOTAL: ${{ total }}</ion-title>
 
     <ion-buttons slot="end">
-      <ion-button (click)="agregarItem()">      
-        AGREGAR ITEM
-      </ion-button>
+      <ion-button (click)="agregarItem()"> AGREGAR ITEM </ion-button>
+      <ion-button (click)="cambiarTotal()">CAMBIAR TOTAL</ion-button>
     </ion-buttons>
-
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-card *ngFor="let item of items">
-    <ion-item-sliding>
+    <ion-item-sliding #itemSliding>
       <ion-item>
         <ion-grid>
           <ion-row>
@@ -51,7 +47,7 @@
                 type="submit"
                 color="secondary"
               >
-                {{item.item}}
+                {{ item.item }}
               </ion-card-title>
             </ion-col>
 
@@ -61,7 +57,7 @@
                 type="submit"
                 color="secondary"
               >
-                {{item.id_item}}
+                ANCHO: {{ item.ancho_item }}
               </ion-card-title>
             </ion-col>
 
@@ -71,39 +67,28 @@
                 type="submit"
                 color="secondary"
               >
-                {{item.total}}
+                ALTO: {{ item.alto_item }}
               </ion-card-title>
             </ion-col>
 
             <ion-col>
-              <ion-card-title
-                class="ion-margin-top ion-margin-bottom"
-                type="submit"
-                color="secondary"
-              >
-              ANCHO: {{item.ancho_item}} 
+              <ion-card-title>
+                <img src="{{ api }}/{{ item.foto }}" />
               </ion-card-title>
             </ion-col>
-
-            <ion-col>
-              <ion-card-title
-                class="ion-margin-top ion-margin-bottom"
-                type="submit"
-                color="secondary"
-              >
-              ALTO: {{item.alto_item}}
-              </ion-card-title>
-            </ion-col>
-
           </ion-row>
         </ion-grid>
       </ion-item>
-      <ion-item-options side="end" (ionSwipe)="eliminar(item)">
+      <ion-item-options side="end" (ionSwipe)="eliminar(item);itemSliding.close()">
         <ion-item-option expandable color="danger">
           <ion-icon name="trash-outline"> </ion-icon>
         </ion-item-option>
       </ion-item-options>
-      
+      <ion-item-options side="start" (ionSwipe)="verDetalle(item);itemSliding.close()">
+        <ion-item-option expandable color="success">
+          <ion-icon name="trash-outline"> </ion-icon>
+        </ion-item-option>
+      </ion-item-options>
     </ion-item-sliding>
   </ion-card>
 </ion-content>

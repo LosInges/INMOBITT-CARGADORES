@@ -17,12 +17,6 @@ const routes: Routes = [
       import('./fletes/fletes.module').then((m) => m.FletesPageModule),
   },
   {
-    path: 'cargadores',
-    loadChildren: () =>
-      import('./cargadores/cargadores.module').then(
-        (m) => m.CargadoresPageModule
-      ),
-  },  {
     path: 'perfil',
     loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
   },

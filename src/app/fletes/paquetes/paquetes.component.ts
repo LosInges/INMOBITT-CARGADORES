@@ -7,14 +7,12 @@ import { TransporteFleteService } from '../services/transporte-flete.service';
 import { InfoPaquetesComponent } from './info-paquetes/info-paquetes.component';
 import { PaquetesService } from '../services/paquetes.service';
 
-
 @Component({
   selector: 'app-paquetes',
   templateUrl: './paquetes.component.html',
   styleUrls: ['./paquetes.component.scss'],
 })
 export class PaquetesComponent implements OnInit {
-
   transporteFlete: TransporteFlete = {
     flete: '',
     transporte: '',
@@ -28,7 +26,7 @@ export class PaquetesComponent implements OnInit {
     private activedRoute: ActivatedRoute,
     private transporteFleteService: TransporteFleteService,
     private paquetesService: PaquetesService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.activedRoute.params.subscribe((params) => {
@@ -56,18 +54,23 @@ export class PaquetesComponent implements OnInit {
     const modal = await this.modalController.create({
       component: InfoPaquetesComponent,
       componentProps: { flete: this.transporteFlete.flete },
-      cssClass: 'modalGeneral'
+      cssClass: 'modalGeneral',
     });
     return await modal.present();
   }
   eliminar(paquete: string) {
     this.paquetesService.deletePaquete(paquete).subscribe((va) => {
       this.transporteFlete.paquete = va.results
-        ? this.transporteFlete.paquete.filter((pa) => pa != paquete) : this.transporteFlete.paquete
-      this.transporteFleteService.postTransportesFlete(this.transporteFlete).subscribe()
-    })
+        ? this.transporteFlete.paquete.filter((pa) => pa !== paquete)
+        : this.transporteFlete.paquete;
+      this.transporteFleteService
+        .postTransportesFlete(this.transporteFlete)
+        .subscribe();
+    });
   }
   navegar(paquete: string) {
-    this.router.navigate(['./', paquete, 'items'], { relativeTo: this.activedRoute })
+    this.router.navigate(['./', paquete, 'items'], {
+      relativeTo: this.activedRoute,
+    });
   }
 }
