@@ -22,7 +22,11 @@ const routes: Routes = [
       import('./cargadores/cargadores.module').then(
         (m) => m.CargadoresPageModule
       ),
+  },  {
+    path: 'perfil',
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
   },
+
 ];
 
 @NgModule({
