@@ -40,7 +40,11 @@ export class PerfilPage implements OnInit {
           if (empresa) {
             this.cargadoresService
               .getCargador(empresa, rfc)
-              .subscribe((cargador) => (this.cargador = cargador));
+              .subscribe((cargador) => {
+                this.cargador = cargador;
+                this.apellidoPat = this.cargador.apellido.split(' ')[0];
+                this.apellidoMat = this.cargador.apellido.split(' ')[1];
+              });
           }
         });
       }
@@ -62,9 +66,7 @@ export class PerfilPage implements OnInit {
         datos.append('img', imgBlob, `imagen.${photo.format}`);
         this.fotoService
           .subirMiniatura(datos)
-          .subscribe((res) =>
-          this.cargador.foto = res.path
-          );
+          .subscribe((res) => (this.cargador.foto = res.path));
       };
       const consulta = fetch(photo.webPath).then((v) =>
         v.blob().then((imagen) => reader.readAsArrayBuffer(imagen))
@@ -77,7 +79,7 @@ export class PerfilPage implements OnInit {
         .postCargador(this.cargador)
         .subscribe((resultado) => {
           if (resultado.results) {
-            console.log("EXITOSO");
+            console.log('EXITOSO');
           }
         });
     }

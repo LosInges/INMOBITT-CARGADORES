@@ -128,12 +128,12 @@
 
               <ion-col>
                 <ion-item color="dark">
-                  <img src=" {{api}}/{{cargador.foto}}" />
-                  <ion-row>
-                    <button (click)="tomarFotografia()">
-                      TOMAR FOTOGRAFIA
-                    </button>
-                  </ion-row>
+                  <img *ngIf="cargador.foto" src="{{api}}/{{cargador.foto}}" />
+                  <ion-buttons>
+                    <ion-button expand="full" (click)="tomarFotografia()">
+                      CAMBIAR FOTO
+                    </ion-button>
+                  </ion-buttons>
                 </ion-item>
               </ion-col>
 
@@ -157,8 +157,7 @@
                     style="padding: 0 15px"
                     name="business-outline"
                   ></ion-icon>
-                  <ion-label> INMOBILIARIA </ion-label>
-                  <ion-input [(ngModel)]="cargador.empresa"> </ion-input>
+                  <ion-input [(ngModel)]="cargador.empresa" disabled> </ion-input>
                 </ion-item>
               </ion-col>
             </ion-row>
