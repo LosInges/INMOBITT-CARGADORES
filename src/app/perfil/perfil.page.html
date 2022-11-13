@@ -15,7 +15,7 @@
           <ion-grid>
             <ion-row>
               <ion-col>
-                <ion-item color="dark">
+                <ion-item>
                   <ion-input
                     [(ngModel)]="cargador.rfc"
                     type="text"
@@ -29,7 +29,7 @@
               </ion-col>
 
               <ion-col>
-                <ion-item color="dark">
+                <ion-item>
                   <ion-input
                     [(ngModel)]="cargador.password"
                     type="text"
@@ -43,7 +43,7 @@
               </ion-col>
 
               <ion-col>
-                <ion-item color="dark">
+                <ion-item>
                   <ion-input
                     [(ngModel)]="confirmPassword"
                     type="text"
@@ -68,7 +68,7 @@
           <ion-grid>
             <ion-row>
               <ion-col>
-                <ion-item color="dark">
+                <ion-item>
                   <ion-input
                     [(ngModel)]="cargador.nombre"
                     type="text"
@@ -82,7 +82,7 @@
               </ion-col>
 
               <ion-col>
-                <ion-item color="dark">
+                <ion-item>
                   <ion-input
                     [(ngModel)]="apellidoPat"
                     type="text"
@@ -96,7 +96,7 @@
               </ion-col>
 
               <ion-col>
-                <ion-item color="dark">
+                <ion-item>
                   <ion-input
                     [(ngModel)]="apellidoMat"
                     type="text"
@@ -111,8 +111,16 @@
             </ion-row>
 
             <ion-row>
+              <ion-col size="1">
+                <ion-avatar>
+                  <ion-img
+                    src="{{api}}/{{cargador.foto}}"
+                    (click)="tomarFotografia()"
+                  ></ion-img>
+                </ion-avatar>
+              </ion-col>
               <ion-col>
-                <ion-item color="dark">
+                <ion-item>
                   <ion-input
                     disabled
                     [(ngModel)]="cargador.rfc"
@@ -127,18 +135,7 @@
               </ion-col>
 
               <ion-col>
-                <ion-item color="dark">
-                  <img *ngIf="cargador.foto" src="{{api}}/{{cargador.foto}}" />
-                  <ion-buttons>
-                    <ion-button expand="full" (click)="tomarFotografia()">
-                      CAMBIAR FOTO
-                    </ion-button>
-                  </ion-buttons>
-                </ion-item>
-              </ion-col>
-
-              <ion-col>
-                <ion-item color="dark">
+                <ion-item>
                   <ion-input
                     [(ngModel)]="cargador.telefono"
                     type="text"
@@ -152,12 +149,13 @@
               </ion-col>
 
               <ion-col>
-                <ion-item color="dark">
+                <ion-item>
                   <ion-icon
                     style="padding: 0 15px"
                     name="business-outline"
                   ></ion-icon>
-                  <ion-input [(ngModel)]="cargador.empresa" disabled> </ion-input>
+                  <ion-input [(ngModel)]="cargador.empresa" disabled>
+                  </ion-input>
                 </ion-item>
               </ion-col>
             </ion-row>

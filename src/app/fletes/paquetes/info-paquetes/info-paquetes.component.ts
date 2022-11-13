@@ -13,6 +13,7 @@ import { TransporteFleteService } from '../../services/transporte-flete.service'
 })
 export class InfoPaquetesComponent implements OnInit {
   @Input() flete: string;
+  @Input() contacto = '';
   cargadores: Cargador[] = [];
   cargador: string;
   api = environment.api;

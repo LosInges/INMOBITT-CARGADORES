@@ -22,8 +22,8 @@ export class FletesService {
     );
   }
 
-  getFlete(flete: string): Observable<Flete[]> {
-    return this.httpClient.get<Flete[]>(`${environment.api}/flete/${flete}`);
+  getFlete(flete: string): Observable<Flete> {
+    return this.httpClient.get<Flete>(`${environment.api}/flete/${flete}`);
   }
 
   postFlete(flete: Flete): Observable<any> {

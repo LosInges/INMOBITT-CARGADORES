@@ -6,6 +6,7 @@ import { TransporteFlete } from '../interfaces/transporte-flete';
 import { TransporteFleteService } from '../services/transporte-flete.service';
 import { InfoPaquetesComponent } from './info-paquetes/info-paquetes.component';
 import { PaquetesService } from '../services/paquetes.service';
+import { FletesService } from '../services/fletes.service';
 
 @Component({
   selector: 'app-paquetes',
@@ -19,12 +20,14 @@ export class PaquetesComponent implements OnInit {
     paquete: [],
     cargadores: [],
   };
+  contacto = '';
 
   constructor(
     private router: Router,
     private modalController: ModalController,
     private activedRoute: ActivatedRoute,
     private transporteFleteService: TransporteFleteService,
+    private fletesService: FletesService,
     private paquetesService: PaquetesService
   ) {}
 
@@ -36,6 +39,9 @@ export class PaquetesComponent implements OnInit {
         .subscribe((transporteFlete) => {
           this.transporteFlete = transporteFlete;
         });
+      this.fletesService.getFlete(params.id).subscribe((flete) => {
+        this.contacto = flete.telefono;
+      });
     });
   }
 
@@ -53,7 +59,10 @@ export class PaquetesComponent implements OnInit {
   async verInformacion() {
     const modal = await this.modalController.create({
       component: InfoPaquetesComponent,
-      componentProps: { flete: this.transporteFlete.flete },
+      componentProps: {
+        flete: this.transporteFlete.flete,
+        contacto: this.contacto,
+      },
       cssClass: 'modalGeneral',
     });
     return await modal.present();

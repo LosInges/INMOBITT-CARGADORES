@@ -26,15 +26,34 @@
         </ion-input>
       </ion-item>
     </ion-col>
-    <ion-col size="6"> </ion-col>
+    <ion-col size="6">
+      <ion-item>
+        <ion-label position="floating">Telefono de contacto</ion-label>
+        <ion-input [(ngModel)]="contacto" disabled></ion-input>
+      </ion-item>
+    </ion-col>
   </ion-row>
   <ion-row>
     <ion-col>
       <ion-list>
         <ion-item *ngFor="let cargador of cargadores">
-          <ion-label> {{ cargador.nombre }} {{ cargador.apellido }} </ion-label>
-          <ion-label>{{ cargador.telefono }}</ion-label>
-          <ion-img src="{{ api }}/{{ cargador.foto }}"></ion-img>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="2">
+                <ion-avatar>
+                  <ion-img src="{{ api }}/{{ cargador.foto }}"></ion-img>
+                </ion-avatar>
+              </ion-col>
+              <ion-col>
+                <ion-label>
+                  {{ cargador.nombre }} {{ cargador.apellido }}
+                </ion-label>
+              </ion-col>
+              <ion-col
+                ><ion-label>{{ cargador.telefono }}</ion-label>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
         </ion-item>
       </ion-list>
     </ion-col>
