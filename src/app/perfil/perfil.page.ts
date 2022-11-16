@@ -75,6 +75,7 @@ export class PerfilPage implements OnInit {
   }
   actualizarPerfil() {
     if (this.confirmPassword === this.cargador.password) {
+      this.cargador.apellido = this.apellidoPat + ' ' + this.apellidoMat
       this.cargadoresService
         .postCargador(this.cargador)
         .subscribe((resultado) => {

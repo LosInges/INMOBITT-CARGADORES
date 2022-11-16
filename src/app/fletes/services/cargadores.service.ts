@@ -29,10 +29,7 @@ export class CargadoresService {
   }
 
   postCargador(cargador: Cargador): Observable<any> {
-    return this.httpClient.post<any>(`${environment.api}/cargador`, cargador, {
-      // eslint-disable-next-line @typescript-eslint/naming-convention
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return this.httpClient.post<any>(`${environment.api}/cargador`, cargador);
   }
 
   deleteCargador(cargador: Cargador): Observable<any> {
