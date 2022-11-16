@@ -58,6 +58,7 @@ export class DetallePaqueteComponent implements OnInit {
     const modal = await this.modalController.create({
       component: PaqueteComponent,
       componentProps: { id: this.id, total: this.total },
+      cssClass: 'modalGeneral'
     });
     modal.onDidDismiss().then((item) => {
       if (!item.data) {
@@ -87,6 +88,8 @@ export class DetallePaqueteComponent implements OnInit {
         editando: true,
         item,
       },
+      cssClass: 'modalGeneral'
+
     });
     return await modal.present();
   }

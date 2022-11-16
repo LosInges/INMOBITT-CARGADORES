@@ -14,9 +14,20 @@
         <ion-card-content>
           <ion-grid>
             <ion-row>
+
+              <ion-col size="1" *ngIf="cargador.foto">
+                <ion-avatar>
+                  <ion-img
+                    src="{{api}}/{{cargador.foto}}"
+                    (click)="tomarFotografia()"
+                  ></ion-img>
+                </ion-avatar>
+              </ion-col>
+
               <ion-col>
                 <ion-item>
                   <ion-input
+                    disabled
                     [(ngModel)]="cargador.rfc"
                     type="text"
                     required
@@ -110,30 +121,8 @@
               </ion-col>
             </ion-row>
 
-            <ion-row>
-              <ion-col size="1">
-                <ion-avatar>
-                  <ion-img
-                    src="{{api}}/{{cargador.foto}}"
-                    (click)="tomarFotografia()"
-                  ></ion-img>
-                </ion-avatar>
-              </ion-col>
-              <ion-col>
-                <ion-item>
-                  <ion-input
-                    disabled
-                    [(ngModel)]="cargador.rfc"
-                    type="text"
-                    required
-                    placeholder="RFC"
-                  ></ion-input>
-                  <ion-label>
-                    <ion-icon name="mail-outline"> </ion-icon>
-                  </ion-label>
-                </ion-item>
-              </ion-col>
-
+            <ion-row>      
+          
               <ion-col>
                 <ion-item>
                   <ion-input
