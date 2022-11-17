@@ -6,6 +6,8 @@ import { CargadoresService } from 'src/app/fletes/services/cargadores.service';
 import { FotoService } from './../services/foto.service';
 import { SessionService } from 'src/app/services/session.service';
 import { environment } from 'src/environments/environment';
+import { AlertController } from '@ionic/angular';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-perfil',
@@ -30,7 +32,8 @@ export class PerfilPage implements OnInit {
   constructor(
     private sessionService: SessionService,
     private cargadoresService: CargadoresService,
-    private fotoService: FotoService
+    private fotoService: FotoService,
+    private alertController: AlertController
   ) {}
 
   ngOnInit() {
@@ -73,16 +76,51 @@ export class PerfilPage implements OnInit {
       );
     });
   }
-  actualizarPerfil() {
-    if (this.confirmPassword === this.cargador.password) {
-      this.cargador.apellido = this.apellidoPat + ' ' + this.apellidoMat
-      this.cargadoresService
-        .postCargador(this.cargador)
-        .subscribe((resultado) => {
-          if (resultado.results) {
-            console.log('EXITOSO');
-          }
-        });
-    }
+
+  async actualizarPerfil() {
+    let alert: HTMLIonAlertElement;
+      alert = await this.alertController.create({
+        header: 'Confirmar Contraseña',
+        inputs: [
+          {
+            name: 'password',
+            placeholder: 'Contraseña',
+            type: 'text',
+
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+          },
+          {
+            text: 'Aceptar',
+            role: 'accept',
+            handler: (data) => {
+              if(data.password === this.cargador.password){
+                this.cargador.apellido = this.apellidoPat + ' ' + this.apellidoMat
+                this.cargadoresService.postCargador(this.cargador).subscribe((resultado) => 
+                    {
+                      if (resultado.results) {
+                        console.log('EXITOSO');
+                      }
+                    });
+              } 
+              else {
+                this.alertController.create({
+                  header: 'Contraseña',
+                  message: 'Contraseña INCORRECTA',
+                  buttons: ['Aceptar'],
+                }).then(a=>a.present());
+              }
+            },
+          },
+        ],
+      });
+    await alert.present();
   }
+      
 }
+
+//this.confirmPassword === this.cargador.password
