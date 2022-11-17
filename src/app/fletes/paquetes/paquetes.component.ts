@@ -67,6 +67,7 @@ export class PaquetesComponent implements OnInit {
     });
     return await modal.present();
   }
+  
   eliminar(paquete: string) {
     this.paquetesService.deletePaquete(paquete).subscribe((va) => {
       this.transporteFlete.paquete = va.results

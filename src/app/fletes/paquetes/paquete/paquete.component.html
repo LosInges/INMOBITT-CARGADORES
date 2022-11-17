@@ -114,35 +114,31 @@
         </ion-col>
       </ion-row>
 
-      <ion-row>
-        <ion-button (click)="tomarFotografia()" *ngIf="agregando || editando">
+      <ion-card-content>
+        <ion-button  class="ion-float-top" (click)="tomarFotografia()" *ngIf="agregando || editando">
           Foto
+        </ion-button> 
+      </ion-card-content>
+
+      <ion-card-content>
+      <img class="ion-float-top" *ngIf="item.foto" src="{{ api }}/{{ item.foto }}" />
+      </ion-card-content>
+
+      <!--BOTONES--> 
+      <ion-card-content>
+        <ion-button class="ion-margin-top" type="submit" color="light" (click)="cerrar()" >
+          CERRAR
         </ion-button>
-      </ion-row>
 
-      <ion-row>
-        <img *ngIf="foto; else elseBlock" src="{{ api }}/{{ foto }}" />
-        <ng-template #elseBlock>
-          <img *ngIf="item.foto" src="{{ api }}/{{ item.foto }}" />
-        </ng-template>
-      </ion-row>
-
-      <!--BOTONES-->
-      <ion-col>
-        <ion-card-title class="ion-margin-top" type="submit" color="secondary">
-        </ion-card-title>
         <ion-button
+          class="ion-float-right ion-margin-top"
+          fill="solid"
           (click)="agregarItem()"
-          class="ion-margin-top ion-margin-bottom"
-          type="submit"
-          *ngIf="agregando || editando"
         >
           CONFIRMAR
         </ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button (click)="cerrar()"> CERRAR </ion-button>
-      </ion-col>
+      </ion-card-content>
+      
       <ion-col size-xs="0.1"> </ion-col>
     </ion-grid>
   </ion-card>
