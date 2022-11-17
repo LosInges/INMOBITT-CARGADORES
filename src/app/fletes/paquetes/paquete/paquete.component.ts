@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-
 import { FotoService } from 'src/app/services/foto.service';
 import { Item } from '../../interfaces/item';
 import { ItemsService } from '../../services/items.service';
 import { ModalController } from '@ionic/angular';
 import { environment } from './../../../../environments/environment';
 import { v4 as uuidv4 } from 'uuid';
+import { AlertController } from '@ionic/angular';
 
 /* eslint-disable @typescript-eslint/naming-convention */
 
@@ -33,8 +33,21 @@ export class PaqueteComponent implements OnInit {
   constructor(
     private modalController: ModalController,
     private itemService: ItemsService,
-    private fotoService: FotoService
+    private fotoService: FotoService,
+    private alertCtrl: AlertController
   ) {}
+
+  async mostrarAlerta(titulo: string, subtitulo: string, mensaje: string) {
+    const alert = await this.alertCtrl.create({
+      header: titulo,
+      subHeader: subtitulo,
+      message: mensaje,
+      buttons: ['OK']
+    });
+    await alert.present();
+    const result = await alert.onDidDismiss();
+    console.log(result); 
+  }
 
   ngOnInit() {
     if (this.agregando) {
@@ -50,11 +63,18 @@ export class PaqueteComponent implements OnInit {
   }
 
   agregarItem() {
-    this.itemService.postItem(this.item).subscribe((res) => {
-      if (res.results) {
-        this.modalController.dismiss(this.item);
-      }
-    });
+    if(
+      this.item.alto_item.toString().length <= 0 ||
+      this.item.ancho_item.toString().length <= 0 
+    ){
+      this.mostrarAlerta("Error", "Campos vacios", "No deje espacios en blanco.")
+    }else{
+      this.itemService.postItem(this.item).subscribe((res) => {
+        if (res.results) {
+          this.modalController.dismiss(this.item);
+        }
+      });
+    } 
   }
 
   tomarFotografia() {

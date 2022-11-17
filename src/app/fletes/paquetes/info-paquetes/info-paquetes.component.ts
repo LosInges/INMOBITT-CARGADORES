@@ -11,6 +11,7 @@ import { TransporteFleteService } from '../../services/transporte-flete.service'
   templateUrl: './info-paquetes.component.html',
   styleUrls: ['./info-paquetes.component.scss'],
 })
+
 export class InfoPaquetesComponent implements OnInit {
   @Input() flete: string;
   @Input() contacto = '';
