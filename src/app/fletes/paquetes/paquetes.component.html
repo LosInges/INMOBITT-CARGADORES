@@ -15,16 +15,15 @@
   </ion-toolbar>
   <ion-toolbar>
     <!-- COLOCAR UN ICONO PARA LIMPIAR-->
-    <ion-searchbar animated="true" placeholder="Buscar"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <!--TABLA = TARJETAS-->
   <ion-list>
-    <ion-item-sliding *ngFor="let paquete of transporteFlete.paquete ">
+    <ion-item-sliding *ngFor="let paquete of transporteFlete.paquete">
       <ion-item>
-        <ion-label>{{paquete}}</ion-label>
+        <ion-label>{{ paquete }}</ion-label>
       </ion-item>
       <ion-item-options side="end" (ionSwipe)="eliminar(paquete)">
         <ion-item-option expandable color="danger">

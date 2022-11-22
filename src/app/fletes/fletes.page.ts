@@ -2,9 +2,11 @@ import { ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionService } from '../services/session.service';
+import { Direccion } from './interfaces/direccion';
 import { Flete } from './interfaces/flete';
 import { FletesService } from './services/fletes.service';
 import { TransporteFleteService } from './services/transporte-flete.service';
+import { MapsComponent } from '../maps/maps.component';
 //[routerLink]="['/', 'fletes', flete.id, 'paquetes']"
 
 @Component({
@@ -41,6 +43,15 @@ export class FletesPage implements OnInit {
         });
       });
     });
+  }
+
+  async verPosicion(position: Direccion) {
+    const modal = await this.modalController.create({
+      component: MapsComponent,
+      componentProps: { position },
+      cssClass: 'modalGeneral',
+    });
+    return modal.present();
   }
 
   eliminar(flete: Flete) {
