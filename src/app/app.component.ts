@@ -6,10 +6,9 @@ import { SessionService } from './services/session.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  public appPages = [ 
-    
+  public appPages = [
+    { title: 'Perfil', url: '/perfil', icon: 'person' },
     { title: 'Fletes', url: '/fletes', icon: 'bus-outline' },
-    { title: 'Perfil', url: '/perfil', icon: 'log-in' },
     {
       title: 'Cerrar Sesion',
       url: '',
