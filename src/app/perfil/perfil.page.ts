@@ -34,24 +34,14 @@ export class PerfilPage implements OnInit {
     private alertController: AlertController,
     private alertCtrl: AlertController,
     private router: Router
-  ) {
-    router.events.subscribe(e => {
-      if (e instanceof NavigationEnd) {
-        this.sessionService.keys().then(k => {
-          if (k.length <= 0) {
-            this.router.navigate([''])
-          }
-        })
-      }
-    })
-  }
+  ) {}
 
   async mostrarAlerta(titulo: string, subtitulo: string, mensaje: string) {
     const alert = await this.alertCtrl.create({
       header: titulo,
       subHeader: subtitulo,
       message: mensaje,
-      buttons: ['OK']
+      buttons: ['OK'],
     });
     await alert.present();
     const result = await alert.onDidDismiss();
@@ -109,7 +99,11 @@ export class PerfilPage implements OnInit {
       this.cargador.rfc.trim().length <= 0 ||
       this.cargador.rfc.trim().length <= 0
     ) {
-      this.mostrarAlerta("Error", "Campos vacios", "No deje espacios en blanco.") 
+      this.mostrarAlerta(
+        'Error',
+        'Campos vacios',
+        'No deje espacios en blanco.'
+      );
     } else {
       let alert: HTMLIonAlertElement;
       alert = await this.alertController.create({
@@ -119,7 +113,6 @@ export class PerfilPage implements OnInit {
             name: 'password',
             placeholder: 'Contraseña',
             type: 'password',
-
           },
         ],
         buttons: [
@@ -132,19 +125,23 @@ export class PerfilPage implements OnInit {
             role: 'accept',
             handler: (data) => {
               if (data.password === this.cargador.password) {
-                this.cargador.apellido = this.apellidoPat + ' ' + this.apellidoMat
-                this.cargadoresService.postCargador(this.cargador).subscribe((resultado) => {
-                  if (resultado.results) {
-                    console.log('EXITOSO');
-                  }
-                });
-              }
-              else {
-                this.alertController.create({
-                  header: 'Contraseña',
-                  message: 'Contraseña INCORRECTA',
-                  buttons: ['Aceptar'],
-                }).then(a => a.present());
+                this.cargador.apellido =
+                  this.apellidoPat + ' ' + this.apellidoMat;
+                this.cargadoresService
+                  .postCargador(this.cargador)
+                  .subscribe((resultado) => {
+                    if (resultado.results) {
+                      console.log('EXITOSO');
+                    }
+                  });
+              } else {
+                this.alertController
+                  .create({
+                    header: 'Contraseña',
+                    message: 'Contraseña INCORRECTA',
+                    buttons: ['Aceptar'],
+                  })
+                  .then((a) => a.present());
               }
             },
           },
