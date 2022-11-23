@@ -24,27 +24,11 @@
                 </ion-card-title>
               </ion-col>
 
-              <ion-col
-                type="submit"
-                color="secondary"
-                size-xs="6"
-                size-xl="auto"
-                class="ion-text-center"
-              >
-                <ion-button (click)="verPosicion(flete.origen)"
-                  >ORIGEN</ion-button
-                >
+              <ion-col type="submit" color="secondary" size-xs="6" size-xl="auto" class="ion-text-center">
+                <ion-button (click)="verPosicion(flete.origen)">ORIGEN</ion-button>
               </ion-col>
-              <ion-col
-                type="submit"
-                color="secondary"
-                size-xs="6"
-                size-xl="auto"
-                class="ion-text-center"
-              >
-                <ion-button (click)="verPosicion(flete.destino)"
-                  >DESTINO</ion-button
-                >
+              <ion-col type="submit" color="secondary" size-xs="6" size-xl="auto" class="ion-text-center">
+                <ion-button (click)="verPosicion(flete.destino)">DESTINO</ion-button>
               </ion-col>
 
               <ion-col class="ion-text-center" size-xs="12" size-xl="auto">
@@ -55,18 +39,12 @@
             </ion-row>
           </ion-grid>
         </ion-item>
-        <ion-item-options
-          side="end"
-          (ionSwipe)="eliminar(flete);itemSliding.close()"
-        >
+        <ion-item-options side="end" (ionSwipe)="eliminar(flete);itemSliding.close()">
           <ion-item-option expandable color="danger">
             <ion-icon name="trash-outline"> </ion-icon>
           </ion-item-option>
         </ion-item-options>
-        <ion-item-options
-          side="start"
-          (ionSwipe)="navegar(flete);itemSliding.close()"
-        >
+        <ion-item-options side="start" (ionSwipe)="navegar(flete);itemSliding.close()">
           <ion-item-option expandable color="success">
             <ion-icon name="eye"> </ion-icon>
           </ion-item-option>
