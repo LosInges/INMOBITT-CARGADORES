@@ -29,8 +29,8 @@
     <ion-title color="secondary">TOTAL: ${{ total }}</ion-title>
 
     <ion-buttons slot="end">
-      <ion-button (click)="agregarItem()"> AGREGAR ITEM </ion-button>
-      <ion-button (click)="cambiarTotal()">CAMBIAR TOTAL</ion-button>
+      <ion-button color="secondary" (click)="agregarItem()"> AGREGAR ITEM </ion-button>
+      <ion-button color="secondary" (click)="cambiarTotal()">CAMBIAR TOTAL</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -42,31 +42,19 @@
         <ion-grid>
           <ion-row>
             <ion-col size-xs="2">
-              <ion-card-title
-                class="ion-margin-top ion-margin-bottom"
-                type="submit"
-                color="secondary"
-              >
+              <ion-card-title class="ion-margin-top ion-margin-bottom" type="submit" color="secondary">
                 {{ item.item }}
               </ion-card-title>
             </ion-col>
 
             <ion-col>
-              <ion-card-title
-                class="ion-margin-top ion-margin-bottom"
-                type="submit"
-                color="secondary"
-              >
+              <ion-card-title class="ion-margin-top ion-margin-bottom" type="submit" color="secondary">
                 ANCHO: {{ item.ancho_item }}
               </ion-card-title>
             </ion-col>
 
             <ion-col>
-              <ion-card-title
-                class="ion-margin-top ion-margin-bottom"
-                type="submit"
-                color="secondary"
-              >
+              <ion-card-title class="ion-margin-top ion-margin-bottom" type="submit" color="secondary">
                 ALTO: {{ item.alto_item }}
               </ion-card-title>
             </ion-col>

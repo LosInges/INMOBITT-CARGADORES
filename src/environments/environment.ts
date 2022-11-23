@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  api: 'http://10.54.0.169:3001'
+  api: 'http://10.54.0.169:3001',
+  mapsKey: 'AIzaSyCOIwg4F3KjtbeNCj7NilJBN-1V4-7nZ44'
 };
 
 /*
