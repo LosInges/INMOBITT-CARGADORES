@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: 'http://localhost:3001',
+  api: 'https://inmobitt.tk',
   mapsKey: 'AIzaSyCOIwg4F3KjtbeNCj7NilJBN-1V4-7nZ44',
 };
 

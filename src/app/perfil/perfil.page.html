@@ -14,31 +14,40 @@
         <ion-card-content>
           <ion-grid>
             <ion-row>
-
-              <ion-col size="1" *ngIf="cargador.foto">
-                <ion-avatar>
-                  <ion-img src="{{api}}/{{cargador.foto}}" (click)="tomarFotografia()"></ion-img>
-                </ion-avatar>
+              <ion-col size-xs="12" size-xl="2" *ngIf="cargador.foto">
+                <ion-img
+                  src="{{api}}/img/{{cargador.foto.split('/').pop()}}"
+                  (click)="tomarFotografia()"
+                ></ion-img>
               </ion-col>
-
-              <ion-col>
+              <ion-col size-xs="12" size-xl="5">
                 <ion-item>
-                  <ion-input disabled [(ngModel)]="cargador.rfc" type="text" required placeholder="RFC"></ion-input>
+                  <ion-input
+                    disabled
+                    [(ngModel)]="cargador.rfc"
+                    type="text"
+                    required
+                    placeholder="RFC"
+                  ></ion-input>
                   <ion-label>
                     <ion-icon name=""></ion-icon>
                   </ion-label>
                 </ion-item>
               </ion-col>
 
-              <ion-col>
+              <ion-col size-xs="12" size-xl="5">
                 <ion-item>
-                  <ion-input [(ngModel)]="cargador.password" type="password" required placeholder="Contraseña"></ion-input>
+                  <ion-input
+                    [(ngModel)]="cargador.password"
+                    type="password"
+                    required
+                    placeholder="Contraseña"
+                  ></ion-input>
                   <ion-label>
                     <ion-icon name="lock-closed"></ion-icon>
                   </ion-label>
                 </ion-item>
               </ion-col>
-
 
               <!-- <ion-col>
                 <ion-item>
@@ -53,7 +62,6 @@
                   </ion-label>
                 </ion-item>
               </ion-col> -->
-
             </ion-row>
           </ion-grid>
         </ion-card-content>
@@ -66,27 +74,42 @@
         <ion-card-content>
           <ion-grid>
             <ion-row>
-              <ion-col>
+              <ion-col size-xs="12" size-xl="4">
                 <ion-item>
-                  <ion-input [(ngModel)]="cargador.nombre" type="text" required placeholder="Nombre"></ion-input>
+                  <ion-input
+                    [(ngModel)]="cargador.nombre"
+                    type="text"
+                    required
+                    placeholder="Nombre"
+                  ></ion-input>
                   <ion-label>
                     <ion-icon name="text"></ion-icon>
                   </ion-label>
                 </ion-item>
               </ion-col>
 
-              <ion-col>
+              <ion-col size-xs="12" size-xl="4">
                 <ion-item>
-                  <ion-input [(ngModel)]="apellidoPat" type="text" required placeholder="Apellido Paterno"></ion-input>
+                  <ion-input
+                    [(ngModel)]="apellidoPat"
+                    type="text"
+                    required
+                    placeholder="Apellido Paterno"
+                  ></ion-input>
                   <ion-label>
                     <ion-icon name="text"></ion-icon>
                   </ion-label>
                 </ion-item>
               </ion-col>
 
-              <ion-col>
+              <ion-col size-xs="12" size-xl="4">
                 <ion-item>
-                  <ion-input [(ngModel)]="apellidoMat" type="text" required placeholder="Apellido Materno"></ion-input>
+                  <ion-input
+                    [(ngModel)]="apellidoMat"
+                    type="text"
+                    required
+                    placeholder="Apellido Materno"
+                  ></ion-input>
                   <ion-label>
                     <ion-icon name="text"></ion-icon>
                   </ion-label>
@@ -95,19 +118,26 @@
             </ion-row>
 
             <ion-row>
-
-              <ion-col>
+              <ion-col size-xs="12" size-xl="6">
                 <ion-item>
-                  <ion-input [(ngModel)]="cargador.telefono" type="text" required placeholder="Telefono"></ion-input>
+                  <ion-input
+                    [(ngModel)]="cargador.telefono"
+                    type="text"
+                    required
+                    placeholder="Telefono"
+                  ></ion-input>
                   <ion-label>
                     <ion-icon name="call"></ion-icon>
                   </ion-label>
                 </ion-item>
               </ion-col>
 
-              <ion-col>
+              <ion-col size-xs="12" size-xl="6">
                 <ion-item>
-                  <ion-icon style="padding: 0 15px" name="business-outline"></ion-icon>
+                  <ion-icon
+                    style="padding: 0 15px"
+                    name="business-outline"
+                  ></ion-icon>
                   <ion-input [(ngModel)]="cargador.empresa" disabled>
                   </ion-input>
                 </ion-item>
@@ -117,7 +147,11 @@
         </ion-card-content>
 
         <ion-card-content>
-          <ion-button class="ion-float-right ion-margin-top ion-margin-bottom" fill="solid" (click)="actualizarPerfil()">
+          <ion-button
+            class="ion-float-right ion-margin-top ion-margin-bottom"
+            fill="solid"
+            (click)="actualizarPerfil()"
+          >
             ACTUALIZAR
           </ion-button>
         </ion-card-content>

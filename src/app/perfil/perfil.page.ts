@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+
+import { AlertController } from '@ionic/angular';
 import { Cargador } from 'src/app/fletes/interfaces/cargador';
 import { CargadoresService } from 'src/app/fletes/services/cargadores.service';
 import { FotoService } from './../services/foto.service';
 import { SessionService } from 'src/app/services/session.service';
 import { environment } from 'src/environments/environment';
-import { AlertController } from '@ionic/angular';
-import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -80,7 +81,7 @@ export class PerfilPage implements OnInit {
         });
         datos.append('img', imgBlob, `imagen.${photo.format}`);
         this.fotoService
-          .subirMiniatura(datos)
+          .subirImgMiniatura(datos)
           .subscribe((res) => (this.cargador.foto = res.path));
       };
       const consulta = fetch(photo.webPath).then((v) =>
@@ -131,7 +132,13 @@ export class PerfilPage implements OnInit {
                   .postCargador(this.cargador)
                   .subscribe((resultado) => {
                     if (resultado.results) {
-                      console.log('EXITOSO');
+                      this.alertCtrl
+                        .create({
+                          header: 'ACTUALIZADO',
+                          message: 'Actualizacion Exitosa',
+                          buttons: ['OK'],
+                        })
+                        .then((a) => a.present());
                     }
                   });
               } else {
