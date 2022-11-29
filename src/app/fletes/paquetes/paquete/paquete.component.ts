@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
+
+import { AlertController } from '@ionic/angular';
 import { FotoService } from 'src/app/services/foto.service';
 import { Item } from '../../interfaces/item';
 import { ItemsService } from '../../services/items.service';
 import { ModalController } from '@ionic/angular';
 import { environment } from './../../../../environments/environment';
 import { v4 as uuidv4 } from 'uuid';
-import { AlertController } from '@ionic/angular';
 
 /* eslint-disable @typescript-eslint/naming-convention */
 
@@ -27,6 +28,7 @@ export class PaqueteComponent implements OnInit {
     total: 0,
     alto_item: 0,
     ancho_item: 0,
+    profundidad: 0,
   };
   foto = '';
   api = environment.api;
@@ -42,17 +44,18 @@ export class PaqueteComponent implements OnInit {
       header: titulo,
       subHeader: subtitulo,
       message: mensaje,
-      buttons: ['OK']
+      buttons: ['OK'],
     });
     await alert.present();
     const result = await alert.onDidDismiss();
-    console.log(result); 
+    console.log(result);
   }
 
   ngOnInit() {
     if (this.agregando) {
       this.item.id = this.id;
       this.item.id_item = uuidv4();
+      this.item.total = this.total;
     } else {
       this.foto = `img/${this.item.foto.split('/').pop()}`;
     }
@@ -63,18 +66,22 @@ export class PaqueteComponent implements OnInit {
   }
 
   agregarItem() {
-    if(
+    if (
       this.item.alto_item.toString().length <= 0 ||
-      this.item.ancho_item.toString().length <= 0 
-    ){
-      this.mostrarAlerta("Error", "Campos vacios", "No deje espacios en blanco.")
-    }else{
+      this.item.ancho_item.toString().length <= 0
+    ) {
+      this.mostrarAlerta(
+        'Error',
+        'Campos vacios',
+        'No deje espacios en blanco.'
+      );
+    } else {
       this.itemService.postItem(this.item).subscribe((res) => {
         if (res.results) {
           this.modalController.dismiss(this.item);
         }
       });
-    } 
+    }
   }
 
   tomarFotografia() {

@@ -6,4 +6,5 @@ export interface Item {
   total: number;
   alto_item: number;
   ancho_item: number;
+  profundidad: number;
 }

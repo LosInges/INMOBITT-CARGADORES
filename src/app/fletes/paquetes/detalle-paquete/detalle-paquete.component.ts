@@ -1,9 +1,9 @@
+import { AlertController, ModalController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import { Item } from '../../interfaces/item';
 import { ItemsService } from '../../services/items.service';
-import { AlertController, ModalController } from '@ionic/angular';
 import { PaqueteComponent } from '../paquete/paquete.component';
 import { environment } from 'src/environments/environment';
 
@@ -58,7 +58,7 @@ export class DetallePaqueteComponent implements OnInit {
     const modal = await this.modalController.create({
       component: PaqueteComponent,
       componentProps: { id: this.id, total: this.total },
-      cssClass: 'modalGeneral'
+      cssClass: 'modalGeneral',
     });
     modal.onDidDismiss().then((item) => {
       if (!item.data) {
@@ -86,10 +86,14 @@ export class DetallePaqueteComponent implements OnInit {
         total: this.total,
         agregando: false,
         editando: true,
-        item,
+        item: { ...item },
       },
-      cssClass: 'modalGeneral'
-
+      cssClass: 'modalGeneral',
+    });
+    modal.onDidDismiss().then((res) => {
+      if (res.data) {
+        item = res.data;
+      }
     });
     return await modal.present();
   }
